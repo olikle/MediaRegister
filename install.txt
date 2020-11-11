@@ -1,0 +1,31 @@
+install git on windows
+https://danielhuesken.de/git-fur-windows-installieren-und-ssh-keys-nutzen/
+
+ssh-keygen -t rsa -C "your_email@example.com"
+-> empty for no passphrase
+
+notepad C:\users\oliverk\.ssh\id_rsa.pub
+
+git clone git@github.com:olikle/MediaRegister.git
+
+https://developer.okta.com/blog/2018/11/15/node-express-typescript
+npm install --save express sqlite3 body-parser
+npm install --save-dev typescript
+
+npm install --save-dev tslint
+
+npm install --save-dev @types/node @types/express
+
+
+https://developer.okta.com/blog/2018/11/15/node-express-typescript#build-a-better-user-interface-with-materialize-and-ejs
+Build a Better User Interface with Materialize and EJS
+npm install ejs
+
+A Better Way to Manage Configuration Settings in Node.js
+npm install dotenv
+npm install --save-dev @types/dotenv
+
+
+
+
+npm run dev
