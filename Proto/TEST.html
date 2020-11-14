@@ -3,38 +3,107 @@
         <head>
                 <title>Movieregister</title>
                 <meta name="Klepach" content="Klepach">
-                <meta charset="ISO-8859-1">
+                <meta charset="UTF-8">
                 <script src="Moviedata.js" type="text/javascript"></script>
         <style>
+            #adddiv{display: none;}
             body { background-color:#e0e0e0; font-family: Sans,Helvetica,Arial;}
             .flex-container {display: flex;}
-            .flex-container > div {
-              background-color: blue;
-              padding: 20px; 
-              width: 50%;
-              border: black 1px solid;}
+            .flex-container > div {}
+              .button1{height: 100%;width: 100%;}
               .red{background-color: red;color: white;}
               .blue{background-color: blue;color: white;}
               .green{background-color: green;color: white;}
               .yellow{background-color: yellow;}
-              .grey{background-color: grey;}
+              .grey{background-color: #d0d0d0;}
+              .width20{width: 20%;}
+              .width50{width: 50%;}
+              .width80{width: 80%;}
+              .width100{width: 100%;}
+              .height90{height: 1080px;}
+              .padding{padding: 2px;}
+              .padding50{padding: 30%;}
+              .textbox{width: 90%; text-align: left; height: 100px; }
+              table { border-collapse:collapse;padding:0px;color:#303030;background-color:#d0d0d0;width: 100%;}
+              tr       {border-style:solid;}
+              th,td  {text-align:left;vertical-align:top;color:#000000;border-style:solid;border-color:black;border-width:2px;padding-left:10px;padding-right:10px;padding-bottom:5px;padding-top:5px;}
+              th      {color:#303030}
+             
         </style>
         </head>
         <body>
-        <div class="grey">
-            <div class="flex-container">
-                <div class="blue">
-                <input>  
+            <h1>Medienregister</h1>
+            <div class="flex-container height90">
+                <div class="width20 green">
+                    <div class="padding50">
+                        <button>Jonas</button>
+                    </div>
+                    <div class="padding50">
+                        <button>Oli</button>
+                    </div>
+                    <div class="padding50">
+                        <button>Luana</button>
+                    </div>
+                    <div class="padding50">
+                        <select  class="slc">
+                            <option>Auswahl...</option>
+                            <option value="Film"  >Film</option>
+                            <option value="Serie" >Serie</option>
+                        </select>
+                    </div>
+                    <div class="">
+                        <button onclick="togglediv()" class="button1">Add</button>
+                    </div>
                 </div>
-                <div class="green">
-                <button>Test</button>
+                <div id="tbldiv" class="width80">
+                    <table id="datatbl">
+                        <tr><th>Titel</th><th>Anbieter</th><th>Datum</th><th>Wertung</th></tr>
+                    </table>
                 </div>
-            </div>
-            <div class="flex-container">
-                <div>Test1</div>
-                <div>test2</div>
+                <div id="adddiv" class="width80">
+                    <div class="flex-container">
+                        <div class="width50 padding">
+                            <p>Hinzufügen:</p>
+                            <p>Titel</p>
+                            <input/>
+                            <p>Anbiter</p>
+                            <input/>
+                            <p>Bereits vorhanden:</p>
+                            <P>Kommentar:</P>
+                        </div>
+                        <div class="width50 padding">
+                            <p>&nbsp;</p>
+                            <p>Datum</p>
+                            <input/>
+                            <p>Wertung</p>
+                            <input/>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+        
+                        </div>
+        
+                    </div>
+                    <div class="flex-container padding">
+                        <textarea class="textbox"></textarea>
+                    </div>
+                    <div class="width100 padding"><button>Hinzufügen</button></div>
+                </div>
 
-            </div>
-        </div>
+            </Div>
          </body>
+         <script>
+             function togglediv() {
+                 showdiv = document.getElementById("adddiv");
+                 hidediv = document.getElementById("tbldiv");
+                 console.log(showdiv.style.display, showdiv)
+                 console.log(hidediv.style.display, hidediv)
+                 if(showdiv.style.display === "block") {
+                     showdiv.style.display = "none";
+                     hidediv.style.display = "block";
+                 } else {
+                    showdiv.style.display = "block";
+                    hidediv.style.display = "none";
+                 }
+             }
+         </script>
 </html>
