@@ -10,48 +10,53 @@
             body { background-color:#e0e0e0; font-family: Sans,Helvetica,Arial;}
             .flex-container {display: flex;}
             .flex-container > div {}
-              .button1{height: 100%;width: 100%;}
-              .red{background-color: red;color: white;}
-              .blue{background-color: blue;color: white;}
-              .green{background-color: green;color: white;}
-              .yellow{background-color: yellow;}
-              .grey{background-color: #d0d0d0;}
-              .width20{width: 20%;}
-              .width50{width: 50%;}
-              .width80{width: 80%;}
-              .width100{width: 100%;}
-              .height90{height: 1080px;}
-              .padding{padding: 2px;}
-              .padding50{padding: 30%;}
-              .textbox{width: 90%; text-align: left; height: 100px; }
-              table { border-collapse:collapse;padding:0px;color:#303030;background-color:#d0d0d0;width: 100%;}
-              tr       {border-style:solid;}
-              th,td  {text-align:left;vertical-align:top;color:#000000;border-style:solid;border-color:black;border-width:2px;padding-left:10px;padding-right:10px;padding-bottom:5px;padding-top:5px;}
-              th      {color:#303030}
+            .button1{height: 50%;width: 80%;}
+            .red{background-color: red;color: white;}
+            .blue{background-color: blue;color: white;}
+            .green{background-color: green;color: white;}
+            .yellow{background-color: yellow;}
+            .grey{background-color: #d0d0d0;}
+            .grey2{background-color: grey;}
+            .width20{width: 15%;}
+            .width50{width: 50%;}
+            .width80{width: 85%;}
+            .width100{width: 100%;}
+            .height90{height: 90vh;}
+            .hight20{height: 20%;}
+            .padding{padding: 2px;}
+            .textbox{width: 90%; text-align: left; height: 100px; }
+            .btn { width: 70%;}
+            .slc { width: 70%;}
+            .center{text-align: center;}
+            .bottom{vertical-align: bottom;}
+            table { border-collapse:collapse;padding:0px;color:#303030;background-color:#d0d0d0;width: 100%;}
+            tr       {border-style:solid;}
+            th,td  {text-align:left;vertical-align:top;color:#000000;border-style:solid;border-color:black;border-width:2px;padding-left:10px;padding-right:10px;padding-bottom:5px;padding-top:5px;}
+            th      {color:#303030}
              
         </style>
         </head>
         <body>
             <h1>Medienregister</h1>
             <div class="flex-container height90">
-                <div class="width20 green">
-                    <div class="padding50">
-                        <button>Jonas</button>
+                <div class="width20 grey2">
+                    <div class="center bottom hight20">
+                        <button class="btn">Jonas</button>
                     </div>
-                    <div class="padding50">
-                        <button>Oli</button>
+                    <div class="center bottom hight20">
+                        <button class="btn">Oli</button>
                     </div>
-                    <div class="padding50">
-                        <button>Luana</button>
+                    <div class="center bottom hight20">
+                        <button class="btn">Luana</button>
                     </div>
-                    <div class="padding50">
+                    <div class="center bottom hight20">
                         <select  class="slc">
                             <option>Auswahl...</option>
                             <option value="Film"  >Film</option>
                             <option value="Serie" >Serie</option>
                         </select>
                     </div>
-                    <div class="">
+                    <div class="hight20 bottom center">
                         <button onclick="togglediv()" class="button1">Add</button>
                     </div>
                 </div>
