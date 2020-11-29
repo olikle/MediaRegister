@@ -5,61 +5,39 @@
                 <meta name="Klepach" content="Klepach">
                 <meta charset="UTF-8">
                 <script src="Moviedata.js" type="text/javascript"></script>
-        <style>
-            #adddiv{display: none;}
-            body { background-color:#e0e0e0; font-family: Sans,Helvetica,Arial;}
-            .flex-container {display: flex;}
-            .flex-container > div {}
-            .button1{height: 50%;width: 80%;}
-            .red{background-color: red;color: white;}
-            .blue{background-color: blue;color: white;}
-            .green{background-color: green;color: white;}
-            .yellow{background-color: yellow;}
-            .grey{background-color: #d0d0d0;}
-            .grey2{background-color: grey;}
-            .greydiv{border: grey 2px solide;}
-            .width20{width: 15%;}
-            .width50{width: 50%;}
-            .width80{width: 85%;}
-            .width100{width: 100%;}
-            .height90{height: 90vh;}
-            .hight20{height: 20%;}
-            .padding{padding: 2px;}
-            .textbox{width: 90%; text-align: left; height: 100px; }
-            .btn { width: 70%;}
-            .slc { width: 70%;}
-            .center{text-align: center;}
-            .right{float: right;}
-            .bottom{vertical-align: bottom;}
-            table { border-collapse:collapse;padding:0px;color:#303030;background-color:#d0d0d0;width: 100%;}
-            tr       {border-style:solid;}
-            th,td  {text-align:left;vertical-align:top;color:#000000;border-style:solid;border-color:black;border-width:2px;padding-left:10px;padding-right:10px;padding-bottom:5px;padding-top:5px;}
-            th      {color:#303030}
-             
-        </style>
+                <link rel="stylesheet" type="text/css" href="Test.css"/>
         </head>
         <body>
             <h1>Medienregister</h1>
             <div class="flex-container height90">
                 <div class="width20 grey2">
-                    <div class="center bottom hight20">
-                        <button class="btn">Jonas</button>
+                    <div class="button bottom hight20">
+                        <div class="hight10">
+                            Jonas
+                        </div>
                     </div>
-                    <div class="center bottom hight20">
-                        <button class="btn">Oli</button>
+                    <div class="button bottom hight20">
+                        <div class="test">
+                            Oli
+                        </div>
                     </div>
-                    <div class="center bottom hight20">
-                        <button class="btn">Luana</button>
+                    <div class="button bottom hight20">
+                        <div class="test">
+                            Luana
+                        </div>
                     </div>
-                    <div class="center bottom hight20">
-                        <select  class="slc">
-                            <option>Auswahl...</option>
-                            <option value="Film"  >Film</option>
-                            <option value="Serie" >Serie</option>
-                        </select>
+                    
+                    <div class="button bottom hight20">
+                        <div class="test">
+                            <select  class="slc">
+                                <option>Auswahl...</option>
+                                <option value="Film"  >Film</option>
+                                <option value="Serie" >Serie</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="hight20 bottom center">
-                        <button onclick="togglediv()" class="button1">Add</button>
+                    <div onclick="togglediv()" class="hight20 bottom button">
+                        <div class="test">add</div>
                     </div>
                 </div>
                 <Div id="tbldiv" class="width80">
