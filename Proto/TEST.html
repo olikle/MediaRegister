@@ -5,6 +5,7 @@
                 <meta name="Klepach" content="Klepach">
                 <meta charset="UTF-8">
                 <script src="Moviedata.js" type="text/javascript"></script>
+                <script src="Test.js" type="text/javascript"></script>
                 <link rel="stylesheet" type="text/css" href="Test.css"/>
         </head>
         <body>
@@ -97,10 +98,10 @@
              }
 
              console.log("data",data);
+         /*
          var table=document.getElementById("datatbl");
 
 
-         
          for(let xi=0;xi<data.length;xi++){
          var data1 = data[xi];
          var row = table.insertRow(table.rows.length);
@@ -113,6 +114,7 @@
          cell3.innerHTML = data1.watched_date;
          cell4.innerHTML = "rating";
          }
-
+            */
+         getdata("http://localhost:3000/films");
          </script>
 </html>
