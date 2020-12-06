@@ -1,9 +1,51 @@
 
 {
     "films": [
-      { "id": 1, "title": "Alien", "description": "Alien Part 1" },
-      { "id": 1, "title": "Alien II", "description": "Alien Part 2" },
-      { "id": 1, "title": "Matrix", "description": "Matrix I" }
+      {
+         "id": 1,
+        "title": "Alien",
+        "description": "Alien Part 1",
+        "provider":"hard disk",
+        "watched_date":"2020-10-03",
+        "rating":[
+            {
+            "user":"jonas",
+            "points":4
+            }
+        ]
+      },
+      { "id": 2,
+        "title": "Alien II",
+        "description": "Alien Part 2",
+        "provider":"hard disk",
+        "watched_date":"2020-10-03",
+        "rating":[
+            {
+            "user":"jonas",
+            "points":3
+            },
+            {
+                "user":"oli",
+                "points":4
+                }
+        ]
+      },
+      { "id": 3,
+        "title": "Matrix",
+        "description": "Matrix I",
+        "provider":"hard disk",
+        "watched_date":"2020-10-03",
+        "rating":[
+            {
+              "user":"luana",
+              "points":1
+            },
+            {
+              "user":"jonas",
+              "points":3
+            }
+        ]
+      }
     ],
     "tvserie": [
       { "id": 1, "title": "Pych", "description": "Pych", "season": 1, "episode": 1 }

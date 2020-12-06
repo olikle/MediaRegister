@@ -26,6 +26,9 @@ npm install dotenv
 npm install --save-dev @types/dotenv
 
 
+json-server
+tools/json-server/readme.txt
+
 
 
 npm run dev
