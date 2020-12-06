@@ -14,6 +14,7 @@
  */
 
 import { Records, Record } from "../interfaces/records.interface";
+import { db } from "./database";
 
 /**
  * In-Memory Store
@@ -38,10 +39,21 @@ const records: Records = {
 };
 
 /**
- * Service Methods
+ * find all records
  */
+export const findAll = async (searchText: string): Promise<Records> => {
 
-export const findAll = async (): Promise<Records> => {
+ const sql = "SELECT * FROM movies" + (searchText !== "" ? " where title like ?" : "");
+ console.log("sql", sql);
+  db.get(sql, searchText, (err, rows) => {
+    if (err) {
+        console.error(err.message);
+        return null;
+    }
+    console.log("return Rows", rows);
+    return rows;
+  });
+
   return records;
 };
 
