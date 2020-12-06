@@ -24,8 +24,9 @@ export const apiRouter = express.Router();
 
 // GET item/
 apiRouter.get("/items", async (req: Request, res: Response) => {
+    const searchText = req.query.searchtext;
     try {
-      const records: Records = await RecordService.findAll();
+      const records: Records = await RecordService.findAll("Star%");
       res.status(200).send(records);
       // res.send(JSON.stringify({"status": 200, "error": null, "response": "get item ok"}));
     } catch (e) {
