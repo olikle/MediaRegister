@@ -1,0 +1,31 @@
+#adddiv{display: none;}
+            body { background-color:#e0e0e0; font-family: Sans,Helvetica,Arial;}
+            .flex-container {display: flex;}
+            .flex-container > div {}
+            .button1{height: 50%;width: 80%;}
+            .red{background-color: red;color: white;}
+            .blue{background-color: blue;color: white;}
+            .green{background-color: green;color: white;}
+            .yellow{background-color: yellow;}
+            .grey{background-color: #d0d0d0;}
+            .grey2{background-color: grey;}
+            .greydiv{border: grey 2px solide;}
+            .width20{width: 15%;}
+            .width50{width: 50%;}
+            .width80{width: 85%;}
+            .width100{width: 100%;}
+            .height90{height: 90vh;}
+            .hight20{height: 10%;}
+            .hight10{height: 10%;}
+            .padding{padding: 2px;}
+            .textbox{width: 90%; text-align: left; height: 100px; }
+            .btn { width: 70%;}
+            .slc { width: 70%;}
+            .button{text-align: center;padding-top: 28.5%;border: #000000 2px solid;}
+            .right{float: right;}
+            .border{border: #000000 2px;}
+            .bottom{vertical-align: bottom;}
+            table { border-collapse:collapse;padding:0px;color:#303030;background-color:#d0d0d0;width: 100%;}
+            tr       {border-style:solid;}
+            th,td  {text-align:left;vertical-align:top;color:#000000;border-style:solid;border-color:black;border-width:2px;padding-left:10px;padding-right:10px;padding-bottom:5px;padding-top:5px;}
+            th      {color:#303030}
