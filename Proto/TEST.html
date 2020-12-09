@@ -43,7 +43,7 @@
                 </div>
                 <Div id="tbldiv" class="width80">
                     <div class="right">
-                        <input/>
+                        <input id="searchField" onkeypress="searchField_onkeypress(event)"/>
                     </div>
                     <div>
                         <table id="datatbl">
@@ -98,6 +98,13 @@
              }
 
              console.log("data",data);
+
+
+             function searchField_onkeypress(event) {
+                if (event.which == 13) {
+                    console.log(event);
+                }
+             }
          /*
          var table=document.getElementById("datatbl");
 

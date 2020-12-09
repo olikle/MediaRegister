@@ -1,3 +1,6 @@
+//global var
+let movieData = null;
+
 /*const getPost = () => {
     return  fetch (url)
     .then(res => res.json())
@@ -39,20 +42,21 @@ function getdata(url) {
             return response.json();
         })
         .then(function (data) {
-            fillTable(data);
+            movieData = data;
+            fillTable();
         })
         .catch(error => {
             console.log("getdata error", error);
         });
 }
 
-function fillTable(data){
-    console.log("fillTable",data);
+function fillTable(){
+    console.log("fillTable",movieData);
 
     var table=document.getElementById("datatbl");
 
-    for(let xi=0;xi<data.length;xi++){
-        var data1 = data[xi];
+    for(let xi=0;xi<movieData.length;xi++){
+        var data1 = movieData[xi];
         var row = table.insertRow(table.rows.length);
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
