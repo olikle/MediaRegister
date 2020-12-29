@@ -45,7 +45,7 @@ export const findAll = async (searchText: string): Promise<Records> => {
 
  const sql = "SELECT * FROM movies" + (searchText !== "" ? " where title like ?" : "");
  console.log("sql", sql);
-  db.get(sql, searchText, (err, rows) => {
+ const dbResult = db.get(sql, searchText, (err, rows) => {
     if (err) {
         console.error(err.message);
         return null;
@@ -54,7 +54,9 @@ export const findAll = async (searchText: string): Promise<Records> => {
     return rows;
   });
 
-  return records;
+  console.log("dbResult", dbResult);
+
+  return null;
 };
 
 export const find = async (id: number): Promise<Record> => {

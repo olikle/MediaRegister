@@ -16,7 +16,8 @@ import express, { Request, Response } from "express";
  */
 export const rootRouter = express.Router();
 
-// index/
+// index
 rootRouter.get("/", async (req: Request, res: Response) => {
     res.render( "index" );
 });
+
