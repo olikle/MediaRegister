@@ -6,7 +6,7 @@ import path from "path";
 import { rootRouter } from "./routes/root.router";
 import { apiRouter } from "./routes/api.router";
 
-//https://expressjs.com/de/starter/static-files.html
+// https://expressjs.com/de/starter/static-files.html
 
 // initialize configuration
 dotenv.config();
