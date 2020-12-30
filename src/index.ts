@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
 import express from "express";
+import bodyParser from 'body-parser';
 import cors from 'cors';
 import path from "path";
 
@@ -16,6 +17,11 @@ dotenv.config();
 const port = process.env.SERVER_PORT;
 
 const app = express();
+// activate bodyparser
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+// parse application/json
+app.use(bodyParser.json());
 
 app.use("/", rootRouter);
 app.use("/api", apiRouter);

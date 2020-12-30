@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Movieregister - REST calls</title>
+        <meta name="Klepach" content="Klepach">
+        <meta charset="UTF-8">
+        <style>.row {margin-bottom:20px}</style>
+    </head>
+    <body>
+        <div class="row">
+            <h1>Movieregister REST calls</h1>            
+        </div>
+        <div class="row">
+            <h2>Read</h2>
+            Record-Id: <input id="read_recordid" value="1"/>
+            <br/>
+            <button onclick="DoRest('Read')">Read</button>
+            <br>
+            <button onclick="DoRest('Delete')">Delete</button>            
+        </div>
+        <div class="row">
+            <h2>Update</h2>
+            Record-Id: <input id="update_recordid" />
+            <br/>
+            title: <input id="update_title" />
+            <br/>
+            description: <input id="update_description" />
+            <br/>
+            <button onclick="DoRest('Update')">Update</button>            
+        </div>
+        <div class="row">
+            <h2>Create</h2>
+            title: <input id="create_title" value="TitleToAdd 1"/>
+            <br/>
+            description: <input id="create_description" value="DescriptionToAdd 1" />
+            <br/>
+            <button onclick="DoRest('Create')">Write</button>            
+        </div>
+        <div class="row">
+            <div id="StatusCommand"/>
+        </div>
+        <div class="row">
+            <textarea id="CommandResult" cols="132" rows="10"></textarea>
+        </div>
+        <script>
+            function DoRest(restType)
+            {
+                document.getElementById("StatusCommand").innerText = "Do " + restType;
+                console.log("DoRest", restType);
+                if (restType === "Read")
+                {
+                    DoRestRead(document.getElementById("read_recordid").value);
+                }
+                if (restType === "Create")
+                {
+                    DoRestCreateUpdate(null, document.getElementById("create_title").value, document.getElementById("create_description").value);
+                }
+                if (restType === "Update")
+                {
+                    DoRestCreateUpdate(document.getElementById("update_recordid").value, document.getElementById("update_title").value, document.getElementById("update_description").value);
+                }
+                if (restType === "Delete")
+                {
+                    DoRestDelete(document.getElementById("read_recordid").value);
+                }
+            }
+            // rest read record with id 
+            function DoRestRead(recordId)
+            {
+                const options = {
+                    method: 'GET'
+                }
+                DoRestCall("/api/movies/" + recordId, options, CallbackAfterRead);
+            }
+            // rest create/update record 
+            function DoRestCreateUpdate(recordId, recordTitle, recordDescription)
+            {
+                let url = "/api/movies";
+                // data to send
+                let postBody = {
+                    title: recordTitle,
+                    description: recordDescription
+                }
+                // with recordid, update values
+                if (recordId)
+                {
+                    url += "/" + recordId;
+                }
+                // POST for create/update
+                const options = {
+                    method: 'POST',
+                    body: JSON.stringify(postBody),
+                    headers: new Headers({
+                        'Content-Type' : 'application/json'
+                    })
+                }
+                DoRestCall(url, options, CallbackRetJson);
+            }
+            // rest delete record with id 
+            function DoRestDelete(recordId)
+            {
+                const options = {
+                    method: 'DELETE'
+                }
+                DoRestCall("/api/movies/" + recordId, options, CallbackRetJson);
+            }
+            // set read record values in text boxes 
+            function CallbackAfterRead(res)
+            {
+                const record = res;
+                document.getElementById("update_recordid").value = record.id;
+                document.getElementById("update_title").value = record.title;
+                document.getElementById("update_description").value = record.description;
+            }
+
+            // finally rest call 
+            function DoRestCall(url, options, callback)
+            {
+                return fetch(url, options)
+                    .then(res => {
+                        console.log(res.headers.get('Content-Type'));
+
+                        console.log(res.status);
+                        console.log(res.statusText);
+                        console.log(res.type);
+                        console.log(res.url);
+                        return res;
+                    })
+                    .then(res => res.json())
+                    .then(res => {
+                        // call this function with the response object
+                        if (callback)
+                        {
+                            callback(res);
+                        }
+                        return res;
+                    })
+                    .then(res => console.log(res))
+                    .catch(error =>console.error(error))
+            }
+            function CallbackRetJson(res)
+            {
+                let innerText = res.status + res.statusText;
+                if (res.json())
+                {
+                    innerText += JSON.stringify(res);
+                }
+                document.getElementById("CommandResult").innerText = innerText;
+            }
+         </script>
+    </body>
+</html>

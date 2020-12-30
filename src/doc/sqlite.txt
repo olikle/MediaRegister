@@ -1,0 +1,76 @@
+
+database.ts
+ * https://www.npmjs.com/package/sqlite
+ *
+ * https://stackoverflow.com/questions/62456867/cannot-await-for-sqlite3-database-get-function-completion-in-node-js
+ * https://blog.pagesd.info/2019/10/29/use-sqlite-node-async-await/
+ 
+/**
+ * sqlite3 module
+ */
+import sqlite3 from 'sqlite3';
+
+/**
+ * init the database
+ */
+export const db = new sqlite3.Database('./movieregister.db', (err) => {
+    sqlite3.verbose();
+    if (err) {
+        console.error("Error opening database " + err.message);
+    } else {
+        dbCreateTables();
+    }
+});
+
+  
+export const dbCreateTables = async (): Promise<void> => {
+    db.run('CREATE TABLE movies ( \
+        record_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\
+        title NVARCHAR(200) NOT NULL,\
+        description NVARCHAR(2000)\
+    )', (err) => {
+        if (err) {
+            console.log("Table movies already exists.");
+            // const insert = 'INSERT INTO movies (title, description) VALUES (?,?)';
+            // db.run(insert, ["Star Wars I", "Star Wars No I"]);
+        }
+    });
+}
+
+
+
+
+
+
+import { db } from "./database";
+
+export const findAll = async (searchText: string): Promise<Records> => {
+  try {
+    const sql = "SELECT * FROM movies" + (searchText !== "" ? " where title like ?" : "");
+    console.log("findAll: sql", sql, searchText);
+
+    const rows = await (searchText !== "") ? db.all(sql, searchText) : db.all(sql);
+    console.log('Row with count =', rows);
+
+    console.log("dbResult", rows);
+  } catch (error) {
+    console.error("findAll Error", error);
+    throw error;
+  }
+  return null;
+};
+
+export const find = async (id: number): Promise<Record> => {
+  try {
+    const sql = "SELECT * FROM movies where record_id like ?";
+    console.log("find: sql", sql, id);
+
+    const row = await db.get<Record>(sql, id);
+
+    console.log("find row", row);
+  } catch (error) {
+    console.error("findAll Error", error);
+    throw error;
+  }
+  return null;
+};

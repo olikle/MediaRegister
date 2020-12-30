@@ -14,7 +14,7 @@
  */
 
 import { Records, Record } from "../interfaces/records.interface";
-import { db } from "./database";
+import { ReadAll, ReadOne, RunQuery } from "./database";
 
 /**
  * In-Memory Store
@@ -23,76 +23,94 @@ import { db } from "./database";
 const records: Records = {
   1: {
     id: 1,
-    name: "Alien",
+    title: "Alien",
     description: "Alien Part 1"
   },
   2: {
     id: 2,
-    name: "Alien II",
+    title: "Alien II",
     description: "Alien Part 2"
   },
   3: {
     id: 3,
-    name: "Matrix",
+    title: "Matrix",
     description: "Matrix I"
   }
 };
 
 /**
- * find all records
+ * find all movies
  */
-export const findAll = async (searchText: string): Promise<Records> => {
+export const FindAllMovies = async (searchText: string): Promise<Records> => {
+  const sql = "SELECT * FROM movies" + (searchText !== "" ? " where title like ?" : "");
+  console.log("FindAllMovies", sql, searchText);
+  try {
+    const returnMovies = await ReadAll(sql, searchText) as Records;
 
- const sql = "SELECT * FROM movies" + (searchText !== "" ? " where title like ?" : "");
- console.log("sql", sql);
- const dbResult = db.get(sql, searchText, (err, rows) => {
-    if (err) {
-        console.error(err.message);
-        return null;
+    console.log("FindAllMovies", returnMovies);
+
+    return returnMovies;
+  }
+  catch (error) {
+    console.error("FindAllMovies Error", error);
+    throw error;
+  }
+};
+
+/**
+ * Read the movie
+ */
+export const ReadMovie = async (id: number): Promise<Record> => {
+  const sql = "SELECT record_id as id, title, description FROM movies where record_id like ?";
+  console.log("ReadMovie", sql, id);
+  try {
+    const returnRecord = await ReadOne(sql, id) as Record;
+
+    console.log("ReadMovie return row", returnRecord.id, returnRecord.title, returnRecord);
+
+    return returnRecord;
+  }
+  catch (error) {
+    console.error("ReadMovie Error", error);
+    throw error;
+  }
+};
+
+
+/**
+ * create or update the movie
+ */
+export const CreateOrUpdate = async (recordItem: Record): Promise<void> => {
+  let sql = "";
+  try {
+    if (!recordItem.id)
+    {
+      sql = "INSERT INTO movies (title, description) VALUES (?, ?)";
+      console.log("CreateOrUpdate", sql, recordItem);
+      await RunQuery(sql, [recordItem.title, recordItem.description]);
     }
-    console.log("return Rows", rows);
-    return rows;
-  });
-
-  console.log("dbResult", dbResult);
-
-  return null;
-};
-
-export const find = async (id: number): Promise<Record> => {
-  const record: Record = records[id];
-
-  if (record) {
-    return record;
+    else
+    {
+      sql = "UPDATE movies SET title = ?, description = ? WHERE record_id = ?";
+      console.log("CreateOrUpdate", sql, recordItem);
+      await RunQuery(sql, [recordItem.title, recordItem.description, recordItem.id]);
+    }
   }
-
-  throw new Error("No record found");
-};
-
-export const create = async (newItem: Record): Promise<void> => {
-  const id = new Date().valueOf();
-  records[id] = {
-    ...newItem,
-    id
-  };
-};
-
-export const update = async (updatedItem: Record): Promise<void> => {
-  if (records[updatedItem.id]) {
-    records[updatedItem.id] = updatedItem;
-    return;
+  catch (error) {
+    console.error("CreateOrUpdateMovie Error", error);
+    throw error;
   }
-
-  throw new Error("No record found to update");
 };
 
-export const remove = async (id: number): Promise<void> => {
-  const record: Record = records[id];
-
-  if (record) {
-    delete records[id];
-    return;
+export const Delete = async (id: number): Promise<void> => {
+  let sql = "";
+  try {
+    sql = "DELETE FROM movies WHERE record_id = ?";
+    console.log("Delete", sql, id);
+    await RunQuery(sql, [id]);
   }
-
-  throw new Error("No record found to delete");
+  catch (error) {
+    console.error("DeleteMovie Error", error);
+    throw error;
+  }
 };

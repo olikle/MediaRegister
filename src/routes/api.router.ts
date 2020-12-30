@@ -22,11 +22,11 @@ export const apiRouter = express.Router();
  * Controller Definitions
  */
 
-// GET item/
-apiRouter.get("/items", async (req: Request, res: Response) => {
+// GET movies/
+apiRouter.get("/movies", async (req: Request, res: Response) => {
     const searchText = req.query.searchtext;
     try {
-      const records: Records = await RecordService.findAll("Star%");
+      const records: Records = await RecordService.FindAllMovies("Star%");
       res.status(200).send(records);
       // res.send(JSON.stringify({"status": 200, "error": null, "response": "get item ok"}));
     } catch (e) {
@@ -34,11 +34,11 @@ apiRouter.get("/items", async (req: Request, res: Response) => {
     }
 });
 
-// GET items/:id
-apiRouter.get("/items/:id", async (req: Request, res: Response) => {
+// GET movies/:id
+apiRouter.get("/movies/:id", async (req: Request, res: Response) => {
   const id: number = parseInt(req.params.id, 10);
    try {
-     const record: Record = await RecordService.find(id);
+     const record: Record = await RecordService.ReadMovie(id);
 
      res.status(200).send(record);
    } catch (e) {
@@ -46,39 +46,41 @@ apiRouter.get("/items/:id", async (req: Request, res: Response) => {
    }
 });
 
-// POST items/
-apiRouter.post("/", async (req: Request, res: Response) => {
+// POST movies - create
+apiRouter.post("/movies", async (req: Request, res: Response) => {
   try {
-    const record: Record = req.body.item;
+    console.log("post item body", req.body);
+    const record: Record = req.body;
 
-    await RecordService.create(record);
+    await RecordService.CreateOrUpdate(record);
 
-    res.sendStatus(201);
+    res.sendStatus(200).send({ status: "created/updated"});
   } catch (e) {
+    console.error(e.message);
     res.status(404).send(e.message);
   }
 });
 
-// PUT items/
-
-apiRouter.put("/", async (req: Request, res: Response) => {
+// POST movies/:id - update
+apiRouter.post("/movies/:id", async (req: Request, res: Response) => {
   try {
-    const record: Record = req.body.item;
+    console.log("post item body", req.body);
+    const record: Record = req.body;
+    record.id = Number(req.params.id);
+    await RecordService.CreateOrUpdate(record);
 
-    await RecordService.update(record);
-
-    res.sendStatus(200);
+    res.sendStatus(201);// .send({ status: "ceeated"});
   } catch (e) {
-    res.status(500).send(e.message);
+    console.error(e.message);
+    res.status(404).send(e.message);
   }
 });
 
-// DELETE items/:id
-
-apiRouter.delete("/:id", async (req: Request, res: Response) => {
+// DELETE movies/:id
+apiRouter.delete("/movies/:id", async (req: Request, res: Response) => {
   try {
     const id: number = parseInt(req.params.id, 10);
-    await RecordService.remove(id);
+    await RecordService.Delete(id);
 
     res.sendStatus(200);
   } catch (e) {
