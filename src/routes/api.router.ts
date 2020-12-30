@@ -37,13 +37,19 @@ apiRouter.get("/movies", async (req: Request, res: Response) => {
 // GET movies/:id
 apiRouter.get("/movies/:id", async (req: Request, res: Response) => {
   const id: number = parseInt(req.params.id, 10);
-   try {
-     const record: Record = await RecordService.ReadMovie(id);
-
-     res.status(200).send(record);
-   } catch (e) {
-     res.status(404).send(e.message);
-   }
+  try {
+    const record: Record = await RecordService.ReadMovie(id);
+    if (!record)
+    {
+      res.status(404).send("Record not found!");
+    }
+    else
+    {
+      res.status(200).send(record);
+    }
+  } catch (e) {
+    res.status(404).send(e.message);
+  }
 });
 
 // POST movies - create

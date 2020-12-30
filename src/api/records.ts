@@ -65,7 +65,11 @@ export const ReadMovie = async (id: number): Promise<Record> => {
   console.log("ReadMovie", sql, id);
   try {
     const returnRecord = await ReadOne(sql, id) as Record;
-
+    if (!returnRecord)
+    {
+      console.log("ReadMovie Error", "Record not found!");
+      return null;
+    }
     console.log("ReadMovie return row", returnRecord.id, returnRecord.title, returnRecord);
 
     return returnRecord;
