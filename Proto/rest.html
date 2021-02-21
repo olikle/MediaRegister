@@ -37,6 +37,10 @@
             <button onclick="DoRest('Create')">Write</button>            
         </div>
         <div class="row">
+            <h2>List</h2>
+            <button onclick="DoRest('List')">List</button>            
+        </div>
+        <div class="row">
             <div id="StatusCommand"/>
         </div>
         <div class="row">
@@ -62,6 +66,10 @@
                 if (restType === "Delete")
                 {
                     DoRestDelete(document.getElementById("read_recordid").value);
+                }
+                if (restType === "List")
+                {
+                    DoRestList();
                 }
             }
             // rest read record with id 
@@ -104,6 +112,15 @@
                 }
                 DoRestCall("/api/movies/" + recordId, options, CallbackRetJson);
             }
+                        // rest read record with id 
+            function DoRestList()
+            {
+                const options = {
+                    method: 'GET'
+                }
+                DoRestCall("/api/movies/", options, CallbackRetJson);
+            }
+
             // set read record values in text boxes 
             function CallbackAfterRead(res)
             {
@@ -117,16 +134,17 @@
             function DoRestCall(url, options, callback)
             {
                 return fetch(url, options)
-                    .then(res => {
-                        console.log(res.headers.get('Content-Type'));
+                    .then(response => {
+                        console.log("response", response);
+                        console.log("response headers Content-Type", response.headers.get('Content-Type'));
 
-                        console.log(res.status);
-                        console.log(res.statusText);
-                        console.log(res.type);
-                        console.log(res.url);
-                        return res;
+                        console.log("response status", response.status);
+                        console.log("response statusText", response.statusText);
+                        console.log("response type", response.type);
+                        console.log("response url", response.url);
+                        return response;
                     })
-                    .then(res => res.json())
+                    .then(response => response.json())
                     .then(res => {
                         // call this function with the response object
                         if (callback)
@@ -135,13 +153,13 @@
                         }
                         return res;
                     })
-                    .then(res => console.log(res))
+                    .then(res => console.log("response json", res))
                     .catch(error =>console.error(error))
             }
             function CallbackRetJson(res)
             {
-                let innerText = res.status + res.statusText;
-                if (res.json())
+                let innerText = "";
+                if (res)
                 {
                     innerText += JSON.stringify(res);
                 }
