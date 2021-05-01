@@ -39,6 +39,7 @@ function getdata(url) {
             //console.log("getdata response", response);
         })*/
         .then(function (response) {
+            console.log("getdata check")
             return response.json();
         })
         .then(function (data) {

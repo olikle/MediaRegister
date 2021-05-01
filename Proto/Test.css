@@ -1,7 +1,6 @@
 #adddiv{display: none;}
             body { background-color:#e0e0e0; font-family: Sans,Helvetica,Arial;}
             .flex-container {display: flex;}
-            .flex-container > div {}
             .button1{height: 50%;width: 80%;}
             .red{background-color: red;color: white;}
             .blue{background-color: blue;color: white;}
@@ -15,7 +14,7 @@
             .width80{width: 85%;}
             .width100{width: 100%;}
             .height90{height: 90vh;}
-            .hight20{height: 10%;}
+            .hight20{height: 20%;}
             .hight10{height: 10%;}
             .padding{padding: 2px;}
             .textbox{width: 90%; text-align: left; height: 100px; }

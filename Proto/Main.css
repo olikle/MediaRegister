@@ -1,0 +1,12 @@
+.flex-container {display: flex;}
+.grey{background-color: grey;}
+.left{float: left;}
+.width100{width: 100%;}
+.width70{width: 70%;}
+.width20{width: 20%;}
+.width10{width: 10%;}
+.width5{width: 5%;}
+.height100{height: 100vh;}
+.height97{height: 97vh;}
+.height3{height: 3vh;}
+.textright{text-align: right;}
