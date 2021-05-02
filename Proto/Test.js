@@ -99,7 +99,7 @@ function DoRestDelete(recordId)
    const options = {
        method: 'DELETE'
    }
-   DoRestCall("/api/movies/" + recordId, options, CallbackRetJson);
+   DoRestCall("/api/movies/" + recordId, options, CallbackDelete);
 }
            // rest read record with id 
 function DoRestList()
@@ -190,6 +190,7 @@ function tblOnclick(){
     var id = cell.innerText;
     console.log("id: " + id);
     DoRestRead(id);
+    Show_Hide_Delete();
 }
 function CallbackAfterRead(res)
 {
@@ -221,4 +222,18 @@ function clear_fields(){
     document.getElementById("recordid").innerText = "";
     document.getElementById("title").innerText = "";
     document.getElementById("description").innerText = "";
+}
+function Cancle_Btn(){
+    clear_fields();
+    togglediv();
+    DoRestList();
+}
+function Delete_Btn(){
+    let recordId = document.getElementById("recordid").innerText;
+    DoRestDelete(recordId);
+}
+function CallbackDelete() {
+    clear_fields();
+    togglediv();
+    DoRestList();
 }
