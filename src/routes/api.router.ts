@@ -61,7 +61,8 @@ apiRouter.post("/movies", async (req: Request, res: Response) => {
 
     await RecordService.CreateOrUpdate(record);
 
-    res.sendStatus(200).send({ status: "created/updated"});
+    //res.sendStatus(200).send({ status: 'created/updated' });
+    res.sendStatus(200);//.send({ status: 'created/updated' });
   } catch (e) {
     console.error(e.message);
     res.status(404).send(e.message);
@@ -76,7 +77,7 @@ apiRouter.post("/movies/:id", async (req: Request, res: Response) => {
     record.id = Number(req.params.id);
     await RecordService.CreateOrUpdate(record);
 
-    res.sendStatus(201);// .send({ status: "ceeated"});
+    res.sendStatus(201);// .send({ status: "created"});
   } catch (e) {
     console.error(e.message);
     res.status(404).send(e.message);

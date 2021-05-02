@@ -144,7 +144,15 @@
                         console.log("response url", response.url);
                         return response;
                     })
-                    .then(response => response.json())
+                    //.then(response => response.json())
+                    .then(res => {
+                        var contentType = res.headers.get('Content-Type');
+                        console.log(contentType, contentType.indexOf("application/json"));
+                        if (contentType.indexOf("application/json") > -1)
+                            return res.json();
+                        else
+                            return { }
+                    })
                     .then(res => {
                         // call this function with the response object
                         if (callback)

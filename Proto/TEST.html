@@ -4,7 +4,7 @@
                 <title>Movieregister</title>
                 <meta name="Klepach" content="Klepach">
                 <meta charset="UTF-8">
-                <script src="Moviedata.js" type="text/javascript"></script>
+                <!--<script src="Moviedata.js" type="text/javascript"></script>-->
                 <script src="Test.js" type="text/javascript"></script>
                 <link rel="stylesheet" type="text/css" href="Test.css"/>
         </head>
@@ -47,8 +47,13 @@
                     </div>
                     <div>
                         <table id="datatbl">
-                            <tr><th>Titel</th><th>Anbieter</th><th>Datum</th><th>Wertung</th></tr>
-                        </table>
+                            <thead>
+                                <tr><th>Titel</th><th>Description</th><th>record_id</th><th>Wertung</th></tr>
+                            </thead>
+                            <tbody>
+                                
+                            </tbody>
+                            </table>
                     </div>
                 </div>
                 <div id="adddiv" class="width80">
@@ -56,14 +61,17 @@
                         <div class="width50 padding">
                             <p>Hinzufügen:</p>
                             <p>Titel</p>
-                            <input/>
+                            <input id="title" value="TitleToAdd 1"/>
                             <p>Anbiter</p>
                             <input/>
                             <p>Bereits vorhanden:</p>
-                            <P>Kommentar:</P>
+                            <P>Description:</P>
                         </div>
                         <div class="width50 padding">
                             <p>&nbsp;</p>
+                            <div>
+                                <p>id: <span id="recordid"></span></p> 
+                            </div>
                             <p>Datum</p>
                             <input/>
                             <p>Wertung</p>
@@ -75,53 +83,11 @@
         
                     </div>
                     <div class="flex-container greydiv padding">
-                        <textarea class="textbox"></textarea>
+                        <textarea class="textbox" id="description">DescriptionToAdd 1</textarea>
                     </div>
-                    <div class="width100 padding"><button>Hinzufügen</button></div>
+                    <div class="width90 padding"><button onclick="Create_Update_Record()" id="btnUpdate">Hinzufügen</button><button onclick="Delete_Btn()" id="Delete_Btn">Delete</button><button onclick="Cancle_Btn()" class="right">Cancle</button></div>
                 </div>
 
             </Div>
          </body>
-         <script>
-             function togglediv() {
-                 showdiv = document.getElementById("adddiv");
-                 hidediv = document.getElementById("tbldiv");
-                 console.log(showdiv.style.display, showdiv)
-                 console.log(hidediv.style.display, hidediv)
-                 if(showdiv.style.display === "block") {
-                     showdiv.style.display = "none";
-                     hidediv.style.display = "block";
-                 } else {
-                    showdiv.style.display = "block";
-                    hidediv.style.display = "none";
-                 }
-             }
-
-             console.log("data",data);
-
-
-             function searchField_onkeypress(event) {
-                if (event.which == 13) {
-                    console.log(event);
-                }
-             }
-         /*
-         var table=document.getElementById("datatbl");
-
-
-         for(let xi=0;xi<data.length;xi++){
-         var data1 = data[xi];
-         var row = table.insertRow(table.rows.length);
-         var cell1 = row.insertCell(0);
-         var cell2 = row.insertCell(1);
-         var cell3 = row.insertCell(2);
-         var cell4 = row.insertCell(3);
-         cell1.innerHTML = data1.title;
-         cell2.innerHTML = data1.provider;
-         cell3.innerHTML = data1.watched_date;
-         cell4.innerHTML = "rating";
-         }
-            */
-         getdata("http://localhost:3000/films");
-         </script>
 </html>

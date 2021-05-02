@@ -17,3 +17,4 @@ https://www.npmjs.com/package/json-server
   ],
   "profile": { "name": "typicode" }
 }
+selfhtml.org
