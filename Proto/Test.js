@@ -167,12 +167,15 @@ function CallbacktFillTbl(resData){
     console.log("CallbackFillTbl", resData);
     
     var table=document.getElementById("datatbl");
-    table.getElementsByTagName("tbody").innerHTML = "";
-
+    // delete the tbody with the movie row first
+    var tBody = table.getElementsByTagName("tbody")[0];
+    if (tBody) table.removeChild(tBody);
+    // add new empty tbody
+    var tBody = table.appendChild(document.createElement("tbody") );
 
     for(let xi=0; xi<resData.length; xi++){
         var data1 = resData[xi];
-        var row = table.insertRow(table.rows.length);
+        var row = tBody.insertRow();
         row.onclick = tblOnclick;
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
@@ -202,12 +205,14 @@ function CallbackAfterRead(res)
    togglediv();
 }
 function Create_Update_Record(){
-    console.log("call Create_Update_Record");
     let recordId = document.getElementById("recordid").innerText;
-    if (recordid = ""){
+    console.log("call Create_Update_Record", recordId);
+
+    // Jonas! --> if (recordId = ""){
+    if (recordId == ""){
         DoRestCreateUpdate(null, document.getElementById("title").value, document.getElementById("description").value);
     } else {
-        DoRestCreateUpdate(recordid, document.getElementById("title").value, document.getElementById("description").value);
+        DoRestCreateUpdate(recordId, document.getElementById("title").value, document.getElementById("description").value);
     }
     
 }
